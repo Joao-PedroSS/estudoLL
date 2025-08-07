@@ -20,25 +20,25 @@ int main() {
     setlocale(LC_ALL, "Portuguese");
     int LL[MAX], op, opp;
 
-    //Cria√ß√£o da Lista Linear Sequencial
+    //CriaÁ„o da Lista Linear Sequencial
     IL = FL = IA - 1;
 
-    printf("\nESCOLHA A OPERA√á√ÉO DESEJADA");
-    printf("\nDigite 1 para adicionar informa√ß√£o na lista.");
-    printf("\nDigite 2 para remover informa√ß√£o da lista.");
+    printf("\nESCOLHA A OPERA«√O DESEJADA");
+    printf("\nDigite 1 para adicionar informaÁ„o na lista.");
+    printf("\nDigite 2 para remover informaÁ„o da lista.");
     printf("\nDigite 3 para exibir a lista.");
     printf("\nDigite 4 para sair.");
-    printf("\n\nOp√ß√£o: ");
+    printf("\n\nOpÁ„o: ");
     scanf("%d", &op);
 
     while(op != 4) {
         switch (op){
         case 1:
-            printf("\n\t|OPERA√á√ÉO DE INSER√á√ÉO:");
-            printf("\n\t|Digite 1 para Inserir no IN√çCIO da Lista Linear");
+            printf("\n\t|OPERA«√O DE INSER«√O:");
+            printf("\n\t|Digite 1 para Inserir no INÕCIO da Lista Linear");
             printf("\n\t|Digite 2 para Inserir no FINAL da Lista Linear");
             printf("\n\t|Digite 3 para Inserir no MEIO(k) da Lista Linear.");
-            printf("\n\t|Op√ß√£o: ");
+            printf("\n\t|OpÁ„o: ");
             scanf("%d", &opp);
 
             if (opp == 1)
@@ -57,18 +57,18 @@ int main() {
         case 3:
             exibirArray(LL, IL, FL);
             break;
-            
+
         case 5:
             exibirArray(LL, IA, MAX);
             break;
         }
 
-        printf("\nESCOLHA A OPERA√á√ÉO DESEJADA");
-        printf("\nDigite 1 para adicionar informa√ß√µes na lista.");
-        printf("\nDigite 2 para remover informa√ß√£o da lista.");
+        printf("\nESCOLHA A OPERA«√O DESEJADA");
+        printf("\nDigite 1 para adicionar informaÁıes na lista.");
+        printf("\nDigite 2 para remover informaÁ„o da lista.");
         printf("\nDigite 3 para exibir a lista.");
         printf("\nDigite 4 para sair.");
-        printf("\n\nOp√ß√£o: ");
+        printf("\n\nOpÁ„o: ");
         scanf("%d", &op);
     }
 }
@@ -76,17 +76,17 @@ int main() {
 void Inserir_Final(int LL[])
 {
     int n, i;
-    printf("\t|\n\t|Insira um n√∫mero: ");
+    printf("\t|\n\t|Insira um n˙mero: ");
     scanf("%d", &n);
 
-    if (IL == IA && FL == FA) {
-        printf("Vetor cheio\n");
+    if (IL == IA && FL == MAX) {
+        printf("\t|Vetor cheio!");
     } else {
         if (IL == -1) {
             IL = FL = IA;
         }
 
-        if (FL < FA) {
+        if (FL <= FA) {
             LL[FL] = n;
             FL++;
 
@@ -110,17 +110,17 @@ void Inserir_Final(int LL[])
 void Inserir_Inicio(int LL[])
 {
     int n, i;
-    printf("\t|\n\t|Insira um n√∫mero: ");
+    printf("\t|\n\t|Insira um n˙mero: ");
     scanf("%d", &n);
 
-    if (IL == IA && FL == FA) {
-        printf("\t|Vetor cheio\n");
+    if (IL == IA && FL == MAX) {
+        printf("\t|Vetor cheio!");
     } else {
         if (IL == -1) {
             IL = FL = IA;
         }
 
-        if (IL > IA) { //Tem espa√ßo
+        if (IL > IA) { //Tem espaÁo
             IL--;
             LL[IL] = n;
 
@@ -144,23 +144,23 @@ void Inserir_Inicio(int LL[])
 void Inserir_Meio(int LL[])
 {
     int n, i, ind, indexL;
-    printf("\t|\n\t|Insira uma posi√ß√£o para o n√∫mero (de 0 a %d): ", (IL == -1) ? 0 : FL - IL - 1);
+    printf("\t|\n\t|Insira uma posiÁ„o para o n˙mero (de 0 a %d): ", (IL == -1) ? 0 : FL - IL - 1);
     scanf("%d", &ind);
 
     indexL = IL + ind;
 
-    printf("\t|Insira um n√∫mero: ");
+    printf("\t|Insira um n˙mero: ");
     scanf("%d", &n);
 
-    if (IL == IA && FL == FA)
-        printf("\nVetor sem espa√ßo!");
-    else {
+    if (IL == IA && FL == MAX) {
+        printf("\t|Vetor sem espaÁo!");
+    } else {
         if (FL == -1) {
             IL = FL = IA;
-            LL[IL] = n;  
+            LL[IL] = n;
             indexL = IL + ind;
         } else {
-            if (FL != FA) { // tem espa√ßo no final
+            if (FL != FA) { // tem espaÁo no final
                 for (i = FL; i >= indexL; i--) {
                     LL[i + 1] = LL[i];
                 }
@@ -188,52 +188,43 @@ void exibirArray(int ar[], int I, int F)
 {
     int i;
     if (I == -1 || F == -1)
-        printf("Vetor n√£o inicializado!\n");
+        printf("\n\tVetor n„o inicializado!");
     else {
         printf("\n\t|Lista = [%d", ar[IL]);
 
         for (i = I + 1; i < F; i++) {
             printf(",%d", ar[i]);
         }
-
-        printf("]\n");
+        printf("]");
         for (i = 0; i < 3; i++) {
             printf(".");
-            sleep(1);
+            Sleep(1000);
         }
+        system("cls");
     }
-        
-    }
-    
+
+}
+
 void Remover(int LL[])
 {
     int i, ind;
-    printf("\n\t|Insira a posci√ß√£o que deseja remover:");
+    printf("\n\t|Insira a posciÁ„o que deseja remover:");
     scanf("%d", &ind);
-    
+
     if (IL == -1) {
-        printf("LL n√£o inicializada!\n");
+        printf("\t|LL n„o inicializada!");
     } else {
         ind = IL + ind;
         for (i = ind + 1; i < FL; i++) {
             LL[i - 1] = LL[i];
         }
         FL--;
+
+        for (i = 0; i < 3; i++) {
+            printf(".");
+            Sleep(500);
+        }
+        system("cls");
     }
-    
+
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
